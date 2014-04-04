@@ -6,7 +6,7 @@ ENV DEB_BUILD_OPTIONS parallel=32
 ADD apt.sources.list /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get install -y software-properties-common
-#RUN add-apt-repository ppa:ska-sa/main
+RUN add-apt-repository ppa:ska-sa/main
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y devscripts
