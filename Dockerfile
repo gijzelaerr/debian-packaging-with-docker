@@ -1,6 +1,7 @@
 FROM gijzelaerr/trusty
 MAINTAINER gijs@pythonic.nl
 ENV DEBIAN_FRONTEND noninteractive
+ENV DEB_BUILD_OPTIONS parallel=32
 
 ADD apt.sources.list /etc/apt/sources.list
 RUN apt-get update
@@ -13,7 +14,9 @@ RUN apt-get install -y devscripts
 ## passwordless sudo
 RUN sed -i 's/%admin ALL=(ALL) ALL/%admin ALL=(ALL) NOPASSWD:ALL/g' /etc/sudoers
 
-RUN addgroup admin
-RUN adduser --system  --shell /bin/sh --ingroup admin builder
+RUN addgroup --system admin
+RUN addgroup --gid 1070 builder
+RUN adduser --system  --shell /bin/sh --uid 1069 --gid 1070 builder
+RUN adduser builder admin
 
 USER builder
