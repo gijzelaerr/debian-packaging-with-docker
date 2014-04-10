@@ -1,4 +1,4 @@
-FROM gijzelaerr/trusty
+FROM gijzelaerr/trusty32
 MAINTAINER gijs@pythonic.nl
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEB_BUILD_OPTIONS parallel=32

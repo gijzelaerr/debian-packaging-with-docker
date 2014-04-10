@@ -1,7 +1,7 @@
-#!/bin/bash -e
+#!/bin/bash -ev
 
-IMAGE=dockdebbuild
+IMAGE=dockdebbuild32
 
-docker build --tag=${IMAGE} .
+docker -D build --tag=${IMAGE} .
 
 docker run -i -t -v /home/gijs/build:/build ${IMAGE} /bin/bash
