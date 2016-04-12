@@ -9,7 +9,7 @@ all: build run
 
 
 build:
-	docker build -t ${DOCKER_REPO} .
+	docker build --build-arg UID=`id -u` -t ${DOCKER_REPO} .
 
 
 clean:
@@ -17,5 +17,5 @@ clean:
 
 
 run:
-	docker run -v `pwd`/build:/build:rw -ti ${DOCKER_REPO}
+	docker run -v ${HOME}:/home/builder:rw -v `pwd`/build:/build:rw -ti ${DOCKER_REPO}
 
